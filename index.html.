@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Question 💗</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: "Press Start 2P", monospace;
+    background:
+      linear-gradient(45deg, #ffd1df 25%, transparent 25%) 0 0/28px 28px,
+      linear-gradient(-45deg, #ffd1df 25%, transparent 25%) 0 0/28px 28px,
+      linear-gradient(45deg, transparent 75%, #ffd1df 75%) 0 0/28px 28px,
+      linear-gradient(-45deg, transparent 75%, #ffd1df 75%) 0 0/28px 28px,
+      #fff0f5;
+    color: #6d183b;
+  }
+
+  .window {
+    width: min(92vw, 650px);
+    min-height: 500px;
+    background: #fff7fa;
+    border: 5px solid #6d183b;
+    box-shadow: 12px 12px 0 #6d183b;
+    position: relative;
+    padding: 34px 25px 28px;
+    text-align: center;
+  }
+
+  .titlebar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 31px;
+    background: #e83e73;
+    color: white;
+    border-bottom: 4px solid #6d183b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 9px;
+    font-size: 10px;
+  }
+
+  .dots { letter-spacing: 5px; }
+
+  .hearts {
+    font-size: 25px;
+    letter-spacing: 8px;
+    margin: 15px 0;
+    animation: bounce 1.2s infinite alternate;
+  }
+
+  @keyframes bounce {
+    to { transform: translateY(-5px); }
+  }
+
+  .cat {
+    font-size: 92px;
+    line-height: 1;
+    margin: 8px 0 20px;
+    filter: drop-shadow(4px 4px 0 #6d183b);
+  }
+
+  h1 {
+    font-size: clamp(17px, 4vw, 25px);
+    line-height: 1.7;
+    margin: 8px auto 28px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    position: relative;
+    min-height: 65px;
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 13px;
+    padding: 15px 24px;
+    border: 4px solid #6d183b;
+    background: #ff6f9d;
+    color: white;
+    cursor: pointer;
+    box-shadow: 5px 5px 0 #6d183b;
+  }
+
+  button:active {
+    transform: translate(4px,4px);
+    box-shadow: 1px 1px 0 #6d183b;
+  }
+
+  #noBtn {
+    background: #ffe1ea;
+    color: #6d183b;
+    position: relative;
+  }
+
+  .message {
+    display: none;
+    font-size: 13px;
+    line-height: 2;
+    margin-top: 18px;
+    animation: appear .5s ease;
+  }
+
+  @keyframes appear {
+    from { opacity: 0; transform: scale(.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .signature {
+    margin-top: 22px;
+    color: #e83e73;
+  }
+
+  .floating {
+    position: fixed;
+    pointer-events: none;
+    animation: float 3s linear forwards;
+    font-size: 24px;
+  }
+
+  @keyframes float {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-180px) scale(1.5); }
+  }
+
+  @media (max-width: 500px) {
+    .window { min-height: 470px; padding-left: 15px; padding-right: 15px; }
+    .cat { font-size: 72px; }
+    button { font-size: 10px; padding: 12px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="window">
+  <div class="titlebar">
+    <span>walangkanenbuseng</span>
+    <span class="dots">● ● ●</span>
+  </div>
+
+  <div id="questionScreen">
+    <div class="hearts">♥ ♥ ♥ ♥ ♥</div>
+    <div class="cat">😎💗</div>
+
+    <!-- CHANGE THIS NAME -->
+    <h1>gus2 mo va aq, <span id="name">Ashley?🥺🤔</span>?</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">YES 😳🤯</button>
+      <button id="noBtn">NO 😡🤬</button>
+    </div>
+  </div>
+
+  <div class="message" id="message">
+    <div class="hearts">♥ ♥ ♥</div>
+    <div class="cat">😎💖</div>
+
+    <!-- CHANGE THIS MESSAGE -->
+    <p>
+      sabe q na eh😆😆<br><br>
+      nyhahaa joke lng pu✌<br>
+      but idk if u really feel the same tho,<br>
+      but i js wanted to say dat i really likeee u👻
+    </p>
+
+    <!-- CHANGE THIS SIGNATURE -->
+    <div class="signature">— yaseen ♡</div>
+  </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const questionScreen = document.getElementById("questionScreen");
+const message = document.getElementById("message");
+
+function moveNoButton() {
+  const maxX = Math.max(20, window.innerWidth - 170);
+  const maxY = Math.max(20, window.innerHeight - 100);
+  noBtn.style.position = "fixed";
+  noBtn.style.left = Math.random() * maxX + "px";
+  noBtn.style.top = Math.random() * maxY + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveNoButton);
+noBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  moveNoButton();
+});
+
+yesBtn.addEventListener("click", () => {
+  questionScreen.style.display = "none";
+  message.style.display = "block";
+
+  for (let i = 0; i < 18; i++) {
+    setTimeout(() => {
+      const heart = document.createElement("div");
+      heart.className = "floating";
+      heart.textContent = ["💗","💖","💕","♥"][Math.floor(Math.random()*4)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = (70 + Math.random() * 25) + "vh";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }, i * 100);
+  }
+});
+</script>
+</body>
+</html>
